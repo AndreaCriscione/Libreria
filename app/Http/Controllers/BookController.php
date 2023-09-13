@@ -8,15 +8,21 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth')->only('create', 'store');
+    }
+
+
     public function index(){
         $books = Book::all();
      
-        return view('index', compact('books'));
+        return view('books.index', compact('books'));
      }
      
      
          public function create(){
-             return view('create');
+             return view('books.create');
          }
      
      
@@ -39,16 +45,20 @@ class BookController extends Controller
                  'pages'=> $request->pages,
                  'image'=> $path_image
              ]);
-             return redirect()->route('book.index');
+             return redirect()->route('books.index');
          }
 
-         public function show($book){
+         public function show(Book $book){
 
-            $book = Book::find($book);
-           if(!$book){
-            abort(404);
+            return view('books.show', compact('book'));
            }
-           return view('show', compact('book'));
+
+           public function edit(Book $book){
             
-        }
+            return view('books.edit' , compact('book'));
+           }
+          
+          
+            
+        
 }

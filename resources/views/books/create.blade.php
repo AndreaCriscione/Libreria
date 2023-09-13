@@ -1,4 +1,6 @@
 <x-layout>
+
+
     <x-slot name="title"> Contatti </x-slot>
     <main>
       
