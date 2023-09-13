@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\PublicController;
 use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [PublicController::class, 'homepage'])
+    ->name('homepage');
+
 
 Route::get('/libri', [BookController::class, 'index'])
     ->name('books.index');

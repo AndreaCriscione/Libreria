@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookStoreRequest;
+use App\Http\Requests\BookUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
+
 
 class BookController extends Controller
 {
@@ -45,7 +47,7 @@ class BookController extends Controller
                  'pages'=> $request->pages,
                  'image'=> $path_image
              ]);
-             return redirect()->route('books.index');
+             return redirect()->route('books.index')->with('success', 'Libro Caricato');
          }
 
          public function show(Book $book){
@@ -58,7 +60,31 @@ class BookController extends Controller
             return view('books.edit' , compact('book'));
            }
           
+           public function update(BookUpdateRequest $request, Book $book){
+
+
           
+            //$extension_name = $request->file('image')->getClientOriginalExtension();
+ 
+            $path_image = $book->image;
+            if($request->hasFile('image')){
+                 $file_name = $request->file('image')->getClientOriginalName();
+                 $path_image = $request->file('image')->storeAs('public/images', $file_name);
+ 
+            }
+              
+              $book->update([
+      
+                  'title'=> $request->title,
+                  'pages'=> $request->pages,
+                  'image'=> $path_image
+              ]);
+              return redirect()->route('books.index')->with('success', 'Libro Aggiornato');
+          }
             
-        
+           
+          public function destroy(Book $book){
+            $book->delete();
+            return redirect()->route('books.index')->with('success', 'Libro Eliminato');
+        }
 }

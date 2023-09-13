@@ -31,7 +31,7 @@
           <!--  -->
           <div class="mb-3">
             <label class="form-label">Pagine</label>
-            <input class="form-control" value ="{{old('text')}}" name="pages"  type="text" placeholder="Numero Pagine" />
+            <input class="form-control" value ="{{old('pages')}}" name="pages"  type="text" placeholder="Numero Pagine" />
             @error('text')
             <span class="text-danger"> {{$message}}  </span>
             @enderror
@@ -48,7 +48,8 @@
           <div class="d-grid">
             <button class="btn btn-primary btn-lg" type="submit" >Salva</button>
           </div>
-      
+          <hr>
+          <a href="{{route('books.index')}}">Torna Indietro</a>
         </form>
       
       </div>

@@ -144,7 +144,7 @@ return [
         ]),
     ],
     'redirects' => [
-        'logout' => '/libri'
+        'logout' => '/'
     ]
 
 ];
