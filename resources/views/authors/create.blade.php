@@ -17,12 +17,12 @@
           </ul>
         </div>
         @endif
-        <form action="{{route('books.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('authors.store')}}" method="POST">
           @csrf
           @method('POST')
           <div class="mb-3">
             <label class="form-label">Nome</label>
-            <input class="form-control" value ="{{old('title')}}" name="title" type="text" placeholder="Nome" />
+            <input class="form-control" value ="{{old('name')}}" name="name" type="text" placeholder="Nome Autore" />
             @error('name')
             <span class="text-danger"> {{$message}} </span>
             @enderror
@@ -30,29 +30,21 @@
       
           <!--  -->
           <div class="mb-3">
-            <label class="form-label">Pagine</label>
-            <input class="form-control" value ="{{old('pages')}}" name="pages"  type="text" placeholder="Numero Pagine" />
-            @error('text')
+            <label class="form-label">Cognome</label>
+            <input class="form-control" value ="{{old('surname')}}" name="surname"  type="text" placeholder="Cognome Autore" />
+            @error('surname')
             <span class="text-danger"> {{$message}}  </span>
             @enderror
           </div>
+          
+
 
           <div class="mb-3">
-            <label class="form-label">Copertina</label>
-            <input class="form-control" value ="{{old('image')}}" name="image"  type="file" placeholder="Numero Pagine" />
-            @error('image')
+            <label class="form-label">Compleanno</label>
+            <input class="form-control" value ="{{old('birthday')}}" name="birthday"  type="date" placeholder="Anno Di Nascita" />
+            @error('birthday')
             <span class="text-danger"> {{$message}}  </span>
             @enderror
-          </div>
-
-          <div class="mb-3 form-control">
-            <select name="author_id" >
-
-              @foreach ($authors as $author)
-              <option value="{{$author->id}}">{{$author->name . ' ' .$author->surname}}</option>
-              @endforeach
-              
-            </select>
           </div>
 
           <div class="d-grid">

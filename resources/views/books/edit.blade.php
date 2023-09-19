@@ -48,6 +48,17 @@
             @enderror
           </div>
 
+          <div class="mb-3 form-control">
+            <select name="author_id" >
+
+              @foreach ($authors as $author)
+              <option value="{{$author->id}}" @if ($author->id == $book->author_id) selected @endif>{{$author->name . ' ' .$author->surname}}</option>
+              @endforeach
+              
+            </select>
+          </div>
+
+
           <div class="d-grid">
             <button class="btn btn-primary btn-lg" type="submit" >Aggiorna</button>
           </div>
