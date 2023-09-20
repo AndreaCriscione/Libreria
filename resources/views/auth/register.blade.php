@@ -1,4 +1,9 @@
 <x-layout>
+  <div class="d-flex justify-content-center">
+  <h1>
+    Registrazione
+  </h1>
+</div>
 
 
     <form action="{{route('register')}}" method="POST">
@@ -32,5 +37,6 @@
 
         <button type="submit" class="btn btn-primary">Registrati</button>
       </form>
+  
 
 </x-layout>

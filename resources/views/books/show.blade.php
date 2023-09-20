@@ -21,26 +21,18 @@
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                         <h5 class="card-title mb-3">{{$book->title}}</h5>
-                        
+                        <p class="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                         <div class="d-flex align-items-end justify-content-between">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                
                                 <div class="small">
-                                    <div class="fw-bold">{{$book->pages}} pagine</div>
-                                    <div class="fw-bold">Autore:{{$book->author->name . ' ' . $book->author->surname}}</div>
+                                    <div class="fw-bold">Pagine: {{$book->pages}}</div>
+                                    <div class="fw-bold">Autore: {{$book->author->name . ' ' . $book->author->surname}}</div>
                                     <div class="text-muted">March 12, 2023 &middot; 6 min read</div>
-                                    <hr>
-                                <div class="d-flex justify-contente-center">
-                                    <a class="btn btn-outline-warning me-md-2" href="{{route('books.edit', ['book'=> $book])}}">Modifica</a>
-             
-                                    <form action="{{route('books.destroy', $book)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="text-decoration-none btn btn-outline-danger " type="submit" >Elimina</button>
-                                    </form>
-                                </div>
+                                  
+                               
                                 </div>
                                 
                             </div>

@@ -6,6 +6,7 @@ use App\Http\Requests\BookStoreRequest;
 use App\Http\Requests\BookUpdateRequest;
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 
@@ -28,7 +29,8 @@ class BookController extends Controller
          public function create(){
 
             $authors = Author::all();
-             return view('books.create', compact('authors'));
+            $categories = Category::all();
+             return view('books.create', compact('authors', 'categories'));
          }
      
      
@@ -45,13 +47,15 @@ class BookController extends Controller
 
            }
              
-             Book::create([
+           $book = Book::create([
      
                  'title'=> $request->title,
                  'pages'=> $request->pages,
                  'image'=> $path_image,
                  'author_id'=> $request->author_id,
              ]);
+
+             $book->categories()->attach($request->categories);
              return redirect()->route('books.index')->with('success', 'Libro Caricato');
          }
 
@@ -63,7 +67,8 @@ class BookController extends Controller
            public function edit(Book $book){
 
              $authors = Author::all();
-            return view('books.edit' , compact('book', 'authors'));
+             $categories = Category::all();
+            return view('books.edit' , compact('book', 'authors', 'categories'));
            }
           
            public function update(BookUpdateRequest $request, Book $book){
@@ -86,6 +91,9 @@ class BookController extends Controller
                   'image'=> $path_image,
                   'author_id'=> $request->author_id,
               ]);
+
+              $book->categories()->detach();
+              $book->categories()->attach($request->categories);
               return redirect()->route('books.index')->with('success', 'Libro Aggiornato');
           }
             

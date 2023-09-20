@@ -1,4 +1,14 @@
 <x-layout>
+    @if (session('success'))
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+        <use xlink:href="#check-circle-fill" />
+      </svg>
+      <div>
+        {{session('success')}}
+      </div>
+    </div>
+    @endif
 
     <section class="py-5">
         <div class="container px-5 my-5">
@@ -6,9 +16,11 @@
             <div class="col-lg-8 col-xl-6">
               <div class="text-center">
                 <h2 class="fw-bolder">Libri caricati</h2>
-                <a class="text-decoration-none" href="{{route('books.create')}}" >Crea Libro</a>
+
                 <p class="lead fw-normal text-muted mb-5">Lorem ipsum, dolor sit amet consectetur
                   adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.</p>
+                  <a class="text-decoration-none btn btn-success" href="{{route('books.create')}}" >Crea Libro</a>
+                  <hr>
               </div>
             </div>
           </div>
@@ -21,26 +33,40 @@
                     <img class="card-img-top" src={{Storage::url($book->image)}} alt="..." />
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                        <a class="text-decoration-none link-dark stretched-link" href={{route('books.show', ['book'=>$book->id])}}><h5 class="card-title mb-3">{{$book->title}}</h5></a>
+                        <h5 class="card-title mb-3">{{$book->title}}</h5>
                         <p class="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                        <div class="d-flex align-items-end justify-content-between">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                
                                 <div class="small">
-                                    <div class="fw-bold">{{$book->pages}} pagine</div>
+                                    <div class="fw-bold">Pagine: {{$book->pages}}</div>
                                     <div class="text-muted">March 12, 2023 &middot; 6 min read</div>
+
+                                    <hr>
+                                    <div class="d-flex justify-content-center">
+                                        <a class="btn btn-outline-info me-md-2" href="{{route('books.show', ['book'=>$book->id])}}">Visualizza</a>
+                                    @auth
+                                    <div class="d-flex justify-content-center">
+                                        <a class="btn btn-outline-warning me-md-2" href="{{route('books.edit', ['book'=> $book])}}">Modifica</a>
+                 
+                                        <form action="{{route('books.destroy', $book)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="text-decoration-none btn btn-outline-danger " type="submit" >Elimina</button>
+                                        </form>
+                                    </div>
+                                    @endauth
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div> 
+        </div>
             @endforeach
 
            
-        </div>
+
         <!-- Call to action-->
         <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
             <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">

@@ -33,7 +33,7 @@
 
                     <div class="col mb-5 h-100">
                         <div class="feature bg-warning bg-gradient text-white rounded-3 mb-3">
-                            <a href="#">
+                            <a href="{{route('categories.index')}}">
                                 <i class="bi bi-building text-light">
                                 </i>
                             </a>

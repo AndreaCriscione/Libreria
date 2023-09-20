@@ -40,6 +40,20 @@
             <img class="card-img-top" src={{Storage::url($book->image)}} alt="..." />
           </div>
 
+
+          @foreach ($categories as $category)
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="{{$category->id}}" name="categories[]" id="flexCheckDefault" @if ($book->categories->contains($category->id)) checked @endif>
+              <label class="form-check-label" for="flexCheckDefault">
+                {{$category->name}}
+              </label>
+            </div>
+          </div>
+
+          @endforeach
+
+
           <div class="mb-3">
             <label class="form-label">Copertina</label>
             <input class="form-control" value ="{{old('image')}}" name="image"  type="file" placeholder="Numero Pagine" />

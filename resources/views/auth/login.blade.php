@@ -1,4 +1,9 @@
 <x-layout>
+  <div class="d-flex justify-content-center">
+    <h1>
+      Login
+    </h1>
+  </div>
     
     <form action="{{route('login')}}" method="POST">
         @csrf
