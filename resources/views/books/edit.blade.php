@@ -37,7 +37,7 @@
             @enderror
           </div>
           <div class="mb-3">
-            <img class="card-img-top" src={{Storage::url($book->image)}} alt="..." />
+            <img class="card-img-top" style="width:10rem" src={{Storage::url($book->image)}} alt="..." />
           </div>
 
 

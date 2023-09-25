@@ -30,7 +30,7 @@
             
             <div class="col-lg-4 mb-5">
                 <div class="card h-100 shadow border-0">
-                    <img class="card-img-top" src={{Storage::url($book->image)}} alt="..." />
+                    <img class="card-img-top" style="width:316px;height:350px ;object-fit: cover" src={{Storage::url($book->image)}} alt="..." />
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                         <h5 class="card-title mb-3">{{$book->title}}</h5>
