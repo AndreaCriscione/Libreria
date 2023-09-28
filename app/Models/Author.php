@@ -19,7 +19,7 @@ class Author extends Model
     ];
 
     public function books(){
-         $this->hasMany(Book::class);
+       return $this->hasMany(Book::class);
 
     }
         

@@ -99,7 +99,10 @@ class BookController extends Controller
             
            
           public function destroy(Book $book){
+            
+            $book->categories()->detach();
             $book->delete();
+
            
             return redirect()->route('books.index')->with('success', 'Libro Eliminato');
         }

@@ -20,7 +20,7 @@
                         <th scope="col">Cover</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Pagine</th>
-                        <th scope="col">Anno</th>
+                       
 
                     </tr>
                 </thead>
@@ -33,9 +33,9 @@
                                 src="{{empty($book->image) ? '/assets/images/default.jpg' : Storage::url($book->image)}}"
                                 alt="..." />
                         </td>
-                        <td>{{$book['name']}}</td>
+                        <td>{{$book['title']}}</td>
                         <td>{{$book['pages']}}</td>
-                        <td>{{$book['year']}}</td>
+                       
 
                     </tr>
                     @empty
